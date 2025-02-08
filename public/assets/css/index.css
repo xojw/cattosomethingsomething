@@ -404,8 +404,9 @@ body {
     top: 0;
     left: 50%;
     width: 120px;
-    height: 5px;
-    background: #919191;
+    height: 10px;
+    background: #575757;
+    transition: 0.3s;
     transform: translateX(-50%);
     cursor: pointer;
     z-index: 1000;

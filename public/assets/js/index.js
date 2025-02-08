@@ -1,5 +1,4 @@
 document.addEventListener('DOMContentLoaded', function () {
-  // Create and show the loading screen
   const loadingScreen = document.createElement('div');
   loadingScreen.classList.add('loading-screen');
   document.body.appendChild(loadingScreen);
@@ -18,7 +17,6 @@ document.addEventListener('DOMContentLoaded', function () {
     }, 100);
   });
 
-  // Get references to the necessary elements
   const searchInputt = document.getElementById("searchInputt");
   const searchInput = document.getElementById("searchInput");
   const iframe = document.querySelector("#p-iframe");
@@ -258,10 +256,10 @@ document.addEventListener('DOMContentLoaded', function () {
     tipArrow.style.height = '0';
     tipArrow.style.borderLeft = '10px solid transparent';
     tipArrow.style.borderRight = '10px solid transparent';
-    tipArrow.style.borderBottom = '10px solid rgba(0,0,0,0.8)';
+    tipArrow.style.borderBottom = '10px solid rgba(0, 0, 0, 0.86)';
     tipContainer.appendChild(tipArrow);
   
-    tipContainer.style.top = '-20vw';     
+    tipContainer.style.top = '-20.8vw';     
     tipContainer.style.left = '50%';      
     tipContainer.style.transform = 'translateX(-50%)';
   
