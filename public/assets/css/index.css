@@ -405,7 +405,7 @@ body {
     left: 50%;
     width: 120px;
     height: 5px;
-    background: rgb(145, 145, 145);
+    background: #919191;
     transform: translateX(-50%);
     cursor: pointer;
     z-index: 1000;

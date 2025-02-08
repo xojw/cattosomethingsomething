@@ -1,4 +1,5 @@
 document.addEventListener('DOMContentLoaded', function () {
+  // Create and show the loading screen
   const loadingScreen = document.createElement('div');
   loadingScreen.classList.add('loading-screen');
   document.body.appendChild(loadingScreen);
@@ -17,6 +18,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }, 100);
   });
 
+  // Get references to the necessary elements
   const searchInputt = document.getElementById("searchInputt");
   const searchInput = document.getElementById("searchInput");
   const iframe = document.querySelector("#p-iframe");
@@ -28,10 +30,11 @@ document.addEventListener('DOMContentLoaded', function () {
 
   const hoverTrigger = document.createElement("div");
   hoverTrigger.classList.add("hover-trigger");
-  hoverTrigger.style.display = "none"; 
+  hoverTrigger.style.display = "none";
   document.body.appendChild(hoverTrigger);
 
-  let isTyping = false; 
+  let isTyping = false;
+  let tipShown = false; 
 
   hoverTrigger.addEventListener("mouseenter", () => {
     showNavbar();
@@ -57,6 +60,7 @@ document.addEventListener('DOMContentLoaded', function () {
     navBar.style.opacity = "1";
     navBar.style.transform = "translateY(0)";
     navBar.style.pointerEvents = "auto";
+    hoverTrigger.style.backgroundColor = "#e4e4e4b9"; 
   }
 
   function hideNavbar() {
@@ -64,6 +68,7 @@ document.addEventListener('DOMContentLoaded', function () {
       navBar.style.opacity = "0";
       navBar.style.transform = "translateY(-100%)";
       navBar.style.pointerEvents = "none";
+      hoverTrigger.style.backgroundColor = "";
     }
   }
 
@@ -95,13 +100,13 @@ document.addEventListener('DOMContentLoaded', function () {
     if (input) {
       input.addEventListener("keyup", (event) => {
         if (event.key === "Enter") {
-          handleSearch(input.value);
+          handleSearch(input.value, input === searchInputt);
         }
       });
     }
   });
 
-  async function handleSearch(query) {
+  async function handleSearch(query, isQuickSearch = false) {
     const searchURL = generateSearchUrl(query);
 
     loadingScreen.style.display = "flex";
@@ -109,11 +114,13 @@ document.addEventListener('DOMContentLoaded', function () {
       loadingScreen.style.opacity = 1;
     }, 50);
 
-    iframe.style.display = "none";
-    iframe.style.opacity = 0;
-    navBar.style.opacity = "0";
-    navBar.style.transform = "translateY(-100%)";
-    hoverTrigger.style.display = "none"; 
+    if (!isQuickSearch) {
+      iframe.style.display = "none";
+      iframe.style.opacity = 0;
+      navBar.style.opacity = "0";
+      navBar.style.transform = "translateY(-100%)";
+      hoverTrigger.style.display = "none"; 
+    }
 
     iframe.src = await getUrl(searchURL);
     addToHistory(iframe.src);
@@ -127,12 +134,19 @@ document.addEventListener('DOMContentLoaded', function () {
               loadingScreen.style.transition = "opacity 0.6s ease";
               loadingScreen.style.opacity = 0;
 
-              iframe.style.display = "block";
-              iframe.style.transition = "opacity 0.6s ease, transform 0.6s ease"; 
-              iframe.style.opacity = 1;
-              iframe.style.transform = "translateY(0)";
-              
-              hoverTrigger.style.display = "block"; 
+              if (!isQuickSearch) {
+                iframe.style.display = "block";
+                iframe.style.transition = "opacity 0.6s ease, transform 0.6s ease"; 
+                iframe.style.opacity = 1;
+                iframe.style.transform = "translateY(0)";
+                hoverTrigger.style.display = "block"; 
+
+                if (!tipShown && !localStorage.getItem('tipShown')) {
+                  tipShown = true;
+                  showTip();
+                  localStorage.setItem('tipShown', 'true');
+                }
+              }
 
               setTimeout(() => {
                 loadingScreen.style.display = "none"; 
@@ -217,4 +231,51 @@ document.addEventListener('DOMContentLoaded', function () {
       addToHistory(iframe.contentWindow.location.href);
     }
   });
+
+  function showTip() {
+    const tipContainer = document.createElement('div');
+    tipContainer.classList.add('user-tip');
+    tipContainer.style.position = 'absolute';
+    tipContainer.style.backgroundColor = 'rgba(0,0,0,0.8)';
+    tipContainer.style.color = '#fff';
+    tipContainer.style.padding = '10px 15px';
+    tipContainer.style.borderRadius = '4px';
+    tipContainer.style.boxShadow = '0 2px 8px rgba(0,0,0,0.3)';
+    tipContainer.style.zIndex = '1000';
+    tipContainer.style.opacity = '0';
+    tipContainer.style.transition = 'opacity 0.5s ease';
+  
+    const tipMessage = document.createElement('div');
+    tipMessage.textContent = 'Tip: Hover over here to reveal the navigation bar';
+    tipContainer.appendChild(tipMessage);
+  
+    const tipArrow = document.createElement('div');
+    tipArrow.style.position = 'absolute';
+    tipArrow.style.top = '-10px';
+    tipArrow.style.left = '50%';
+    tipArrow.style.transform = 'translateX(-50%)';
+    tipArrow.style.width = '0';
+    tipArrow.style.height = '0';
+    tipArrow.style.borderLeft = '10px solid transparent';
+    tipArrow.style.borderRight = '10px solid transparent';
+    tipArrow.style.borderBottom = '10px solid rgba(0,0,0,0.8)';
+    tipContainer.appendChild(tipArrow);
+  
+    tipContainer.style.top = '-20vw';     
+    tipContainer.style.left = '50%';      
+    tipContainer.style.transform = 'translateX(-50%)';
+  
+    document.body.appendChild(tipContainer);
+  
+    setTimeout(() => {
+      tipContainer.style.opacity = '1';
+    }, 100);
+  
+    setTimeout(() => {
+      tipContainer.style.opacity = '0';
+      setTimeout(() => {
+        tipContainer.remove();
+      }, 500);
+    }, 5000);
+  }  
 });
