@@ -382,22 +382,21 @@ body {
     padding: 30px;
     display: none;
 }
+
 .navbar {
+    position: fixed;
     top: 2%;
+    left: 50%;
+    width: 1150px;
+    margin-left: -550px; 
     background-color: #11111198;
     backdrop-filter: blur(10px);
     border: 1px solid rgba(255, 255, 255, 0.1);
-    left: 23.5%;
-    width: 1150px;
-    max-width: 100%;
-    display: flex;
-    transition: opacity 0.3s ease, transform 0.3s ease;
     border-radius: 20px;
     align-items: center;
     overflow: hidden;
-    position: fixed;
     z-index: 999;
-    transform: translateX(-50%);
+    transition: opacity 0.3s ease, transform 0.3s ease;
 }
 
 .hover-trigger {
