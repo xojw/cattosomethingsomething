@@ -1,0 +1,415 @@
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: black;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    color: #e0e0e0;
+    overflow-x: hidden;
+    transition: background-color 0.3s ease;
+    scroll-behavior: smooth;
+    position: relative;
+    z-index: 1;
+}
+
+.circuit-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -1;
+}
+
+.circuit-svg {
+    width: 100%;
+    height: 100%;
+    fill: none;
+}
+
+.circuit-line {
+    stroke: #ffffff;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    opacity: 0.9;
+    filter: drop-shadow(0 0 6px #ffffff);
+    animation: drawLine 2s linear infinite alternate;
+}
+
+@keyframes drawLine {
+    0% {
+        stroke-dasharray: 0, 500;
+        stroke-dashoffset: 500;
+    }
+    100% {
+        stroke-dasharray: 500, 0;
+        stroke-dashoffset: 0;
+    }
+}
+
+::selection {
+    background-color: #ffffff;
+    color: #000;
+}
+
+::-webkit-scrollbar {
+    width: 5px;
+}
+
+::-webkit-scrollbar-track {
+    background: #000;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #303030;
+    border-radius: 6px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #3b3b3b;
+}
+
+.search-container {
+    position: relative;
+    margin-top: 22%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    width: 90%;
+}
+
+.search-title {
+    font-size: 80px;
+    color: white;
+    font-weight: bolder;
+    margin-bottom: 20px;
+}
+
+.search-bar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10;
+    margin: 0 auto;
+}
+
+.search-bar input[type="text"] {
+    padding: 18px;
+    z-index: 999;
+    padding-left: 40px;
+    width: 500px;
+    max-width: 100%;
+    background-image: url('/assets/images/icons/search.png');
+    background-size: 35px 35px;
+    background-position: 10px center;
+    background-repeat: no-repeat;
+    border-radius: 20px;
+    color: white;
+    font-size: 16px;
+    border: none;
+    background-color: #0e0e0e81;
+    border: 1px solid rgba(255, 255, 255, 0.185);
+    backdrop-filter: blur(20px);
+    text-indent: 0.5em;
+    outline: none;
+    transition: width 0.8s ease, opacity 0.5s ease-out, clip-path 0.6s ease-out, background-color 0.5s ease;
+}
+
+.search-bar input[type="text"].loaded {
+    opacity: 1;
+    clip-path: inset(0 0 0 0);
+}
+
+.search-bar input[type="text"]:focus {
+    background-color: rgba(104, 104, 104, 0.502);
+}
+
+.search-bar input[type="text"]:hover {
+    background-color: rgba(104, 104, 104, 0.502);
+}
+
+.search-bar input[type="text"]::placeholder {
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+    color: #888888;
+}
+
+.iframe {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100vw;
+    background-color: rgb(0, 0, 0);
+    display: none; 
+    border: none;
+    z-index: 99;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.highlight {
+    font-weight: bold;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+    font-size: 90px;
+}
+
+.separator {
+    position: fixed;
+    top: 0;
+    left: 60px; 
+    width: 2px;
+    height: 100vh;
+    background-color: #bbbbbb4d; 
+}
+
+.cb-logo {
+    position: fixed;
+    top: 15px;
+    left: 10px;
+    width: 50px;
+    height: 50px;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.cb-logo img {
+    width: 40px; 
+    border-radius: 50%;
+    height: auto;
+}
+
+.cb-logo:hover {
+    opacity: 0.7;
+}
+
+.discord-icon {
+    position: fixed;
+    bottom: 10px;
+    left: 10px;
+    font-size: 30px;
+    color: #ffffff;
+    text-decoration: none;
+    transition: transform 0.3s ease, color 0.3s ease;
+    padding-right: 20px;
+}
+
+.discord-icon:hover {
+    color: #aaaaaa;
+}
+
+.github-icon {
+    position: fixed;
+    bottom: 55px;
+    left: 15px;
+    font-size: 30px;
+    color: #ffffff;
+    text-decoration: none;
+    transition: transform 0.3s ease, color 0.3s ease;
+    padding-right: 20px;
+}
+
+.github-icon:hover {
+    color: #aaaaaa;
+}
+
+.loading-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.726);
+    backdrop-filter: blur(5px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    color: white;
+    font-size: 24px;
+    font-weight: bold;
+    opacity: 0; 
+    transition: opacity 0.4s ease; 
+}
+
+.loading-screen::before {
+    content: '';
+    border: 8px solid rgba(255, 255, 255, 0.3);
+    border-top: 8px solid #fff;
+    border-radius: 50%;
+    width: 100px;
+    height: 100px;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes fadeIn {
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes fadeOut {
+    to {
+        opacity: 0;
+    }
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    color: #e0e0e0;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+    text-align: center;
+    padding: 10px 0;
+    font-size: 14px;
+    background-color: transparent; 
+    cursor: default;
+    font-weight: bold;
+    z-index: -1;
+}
+
+.footer p {
+    margin: 0;
+}
+.nav-links li img {
+    width: 23px;
+    height: 23px;
+    transition: background-color 1.3s;
+}
+.navbar ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+.nav-links {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.navbar li {
+    padding: 10px -10px;
+    margin-left: 4px;
+    font-size: 20px;
+    font-weight: bold;
+    position: relative;
+}
+.navbar a {
+    display: block;
+    color: #fff;
+    text-align: center;
+    padding: 16px 20px;
+    transform-origin: center center;
+    text-decoration: none;
+    border-radius: 50%;
+    transform-origin: center;
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out, opacity 0.2s ease-in-out;
+}
+.navbar a:hover {
+    transform: scale(1.2);
+}
+.navbar a:active {
+    transform: scale(0.9);
+}
+
+.navbar a.disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+    pointer-events: none; 
+}
+.navbar a.disabled {
+    transition: opacity 0.3s ease-in-out;
+}
+.small-searchbar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 700px;
+}
+.small-searchbar input[type=text] {
+    padding: 15px;
+    width: 90%;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding-left: 40px;
+    background-image: url('/assets/images/icons/search.png');
+    background-size: 35px 35px;
+    background-position: 10px center;
+    background-repeat: no-repeat;
+    border-radius: 20px;
+    color: rgb(255, 255, 255);
+    font-size: 15px;
+    background-color: #11111180;
+    text-align: left;
+    text-indent: 0.5em;
+    outline: none;
+    transition: 0.5s;
+}
+.small-searchbar input[type=text]:focus {
+    background-color: #33333380;
+}
+.small-searchbar input[type=text]:hover {
+    background-color: #33333380;
+}
+.small-searchbar input[type=text]::placeholder {
+    color: #818181;
+}
+#erudaLoadingScreen {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #1b1b1b9d;
+    backdrop-filter: blur(6px);
+    color: white;
+    font-size: 3em;
+    z-index: 10000;
+    border-radius: 20px;
+    padding: 30px;
+    display: none;
+}
+.navbar {
+    top: 2%;
+    background-color: #11111198;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    left: 23.5%;
+    width: 1150px;
+    max-width: 100%;
+    display: flex;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    border-radius: 20px;
+    align-items: center;
+    overflow: hidden;
+    position: fixed;
+    z-index: 999;
+    transform: translateX(-50%);
+}
+
+.hover-trigger {
+    position: fixed;
+    top: 0;
+    left: 50%;
+    width: 120px;
+    height: 5px;
+    background: rgba(255, 255, 255, 0.15);
+    transform: translateX(-50%);
+    cursor: pointer;
+    z-index: 1000;
+    border-radius: 5px;
+    pointer-events: all;
+}
