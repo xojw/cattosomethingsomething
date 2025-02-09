@@ -1,7 +1,8 @@
 {
   "name": "Catto Bypassing",
   "dockerFile": "Dockerfile",
-  "postCreateCommand": "npm install --verbose",
+  "context": "..",
+  "postCreateCommand": "npm i",
   "customizations": {
     "vscode": {
       "settings": {
