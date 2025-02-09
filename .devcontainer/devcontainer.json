@@ -1,15 +1,15 @@
 {
   "name": "Catto Bypassing",
-  "dockerFile": "Dockerfile", 
-  "postCreateCommand": "npm install && npm start",
+  "dockerFile": "Dockerfile",
+  "postCreateCommand": "npm i",
   "customizations": {
     "vscode": {
       "settings": {
         "terminal.integrated.shell.linux": "/bin/bash"
       },
       "extensions": [
-        "dbaeumer.vscode-eslint",  
-        "ms-azuretools.vscode-docker" 
+        "dbaeumer.vscode-eslint",
+        "ms-azuretools.vscode-docker"
       ]
     }
   }
