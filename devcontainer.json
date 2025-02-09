@@ -1,0 +1,12 @@
+{
+    "name": "Catto Bypassing",
+    "dockerFile": "Dockerfile",
+    "postCreateCommand": "npm i && npm start",
+    "settings": {
+      "terminal.integrated.shell.linux": "/bin/bash"
+    },
+    "extensions": [
+      "dbaeumer.vscode-eslint"
+    ]
+  }
+  
