@@ -17,12 +17,21 @@ document.addEventListener('DOMContentLoaded', function () {
     }, 100);
   });
 
+  const refreshIcon = document.getElementById("refreshIcon");
+  
+  if (refreshIcon) {
+    refreshIcon.addEventListener("click", function () {
+      refreshIcon.style.animation = "none";
+      void refreshIcon.offsetWidth;
+      refreshIcon.style.animation = "spinTwo 0.4s linear";
+    });
+  }
+
   const searchInputt = document.getElementById("searchInputt");
   const searchInput = document.getElementById("searchInput");
   const iframe = document.querySelector("#p-iframe");
   const backIcon = document.getElementById("backIcon");
   const forwardIcon = document.getElementById("forwardIcon");
-  const refreshIcon = document.getElementById("refreshIcon");
   const fullscreenIcon = document.getElementById("fullscreenIcon");
   const navBar = document.querySelector(".navbar");
 
@@ -237,7 +246,7 @@ document.addEventListener('DOMContentLoaded', function () {
     tipContainer.style.backgroundColor = 'rgba(0,0,0,0.8)';
     tipContainer.style.color = '#fff';
     tipContainer.style.padding = '10px 15px';
-    tipContainer.style.borderRadius = '4px';
+    tipContainer.style.borderRadius = '20px';
     tipContainer.style.boxShadow = '0 2px 8px rgba(0,0,0,0.3)';
     tipContainer.style.zIndex = '1000';
     tipContainer.style.opacity = '0';
