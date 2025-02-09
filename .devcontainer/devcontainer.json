@@ -2,7 +2,7 @@
   "name": "Catto Bypassing",
   "dockerFile": "Dockerfile",
   "context": "..",
-  "postCreateCommand": "npm start",
+  "postCreateCommand": "npm i && npm start",
   "forwardPorts": [3000],
   "portsAttributes": {
     "3000": {
