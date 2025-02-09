@@ -1,17 +1,13 @@
 {
   "name": "Catto Bypassing",
-  "dockerFile": "Dockerfile",
-  "context": "..",
-  "postCreateCommand": "npm i",
-  "customizations": {
-    "vscode": {
-      "settings": {
-        "terminal.integrated.shell.linux": "/bin/bash"
-      },
-      "extensions": [
-        "dbaeumer.vscode-eslint",
-        "ms-azuretools.vscode-docker"
-      ]
+  "build": {
+    "dockerfile": "Dockerfile"
+  },
+  "forwardPorts": [3000],
+  "postStartCommand": "npm start",
+  "portsAttributes": {
+    "3000": {
+      "visibility": "public"
     }
   }
 }
