@@ -6,9 +6,8 @@
   "forwardPorts": [3000],
   "portsAttributes": {
     "3000": {
-      "label": "Web App",
+      "label": "lol",
       "onAutoForward": "openPreview",
-      "visibility": "public"
     }
   },
   "customizations": {
