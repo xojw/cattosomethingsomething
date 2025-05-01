@@ -178,7 +178,7 @@ document.addEventListener('DOMContentLoaded', function () {
         if (url.hostname.includes(".")) return url.toString(); 
       } catch {}
     }
-    return `https://search.brave.com/search?q=${encodeURIComponent(query)}&source=web`;
+    return `https://duckduckgo.com/search?q=${encodeURIComponent(query)}&source=web`;
   }
 
   function getUrl(url) {
